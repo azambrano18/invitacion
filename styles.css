@@ -1,37 +1,47 @@
+/* =====================================================
+   VARIABLES GLOBALES (CAMBIAR COLORES AQUÍ)
+===================================================== */
+
 :root {
-  --beige: #f6f2ef;
-  --dorado: #c6a26a;
-  --texto: #5c4a42;
+  --beige: #f6f2ef;   /* Fondo principal */
+  --dorado: #c6a26a;  /* Color acento */
+  --texto: #5c4a42;   /* Color texto */
 }
 
-/* =========================
-   TELÓN REALISTA
-========================= */
 
+/* =====================================================
+   TELÓN CINEMATOGRÁFICO
+===================================================== */
+
+/* Contenedor superior que cubre toda la pantalla */
 #curtainContainer {
   position: fixed;
   inset: 0;
   display: flex;
-  z-index: 9999;
+  z-index: 9999;           /* Siempre encima */
   overflow: hidden;
   cursor: pointer;
   user-select: none;
-  perspective: 1200px;
-  background: transparent; /* 🔥 CLAVE */
+  perspective: 1200px;     /* Profundidad 3D */
+  background: transparent; /* NO debe tapar la invitación */
 }
 
+/* Cada cortina ocupa la mitad */
 .curtain {
   width: 50%;
   height: 100%;
   position: relative;
-  transition: transform 2.2s cubic-bezier(.7,0,.3,1);
-  transform-origin: center;
   overflow: hidden;
 
-  background: linear-gradient(to bottom, #3a001f, #1a000e); /* 🔥 aquí */
+  /* Velocidad de apertura */
+  transition: transform 2.2s cubic-bezier(.7,0,.3,1);
+  transform-origin: center;
+
+  /* Color base del terciopelo */
+  background: linear-gradient(to bottom, #3a001f, #1a000e);
 }
 
-/* Pliegues tipo terciopelo */
+/* Textura tipo pliegues de terciopelo */
 .curtain::before {
   content: "";
   position: absolute;
@@ -46,7 +56,7 @@
     );
 }
 
-/* 🎭 Sombras profundas */
+/* Sombras profundas */
 .curtain::after {
   content: "";
   position: absolute;
@@ -57,7 +67,7 @@
   pointer-events: none;
 }
 
-/* Separación central */
+/* Línea central */
 .left {
   border-right: 3px solid #2a0015;
 }
@@ -85,7 +95,7 @@
   100% { opacity: 0.7; }
 }
 
-/* Texto centrado perfecto */
+/* Texto inicial centrado */
 .introText {
   position: absolute;
   inset: 0;
@@ -102,9 +112,7 @@
   padding: 0 20px;
   z-index: 20;
   text-shadow: 0 4px 25px rgba(0,0,0,0.8);
-
-  /* 🔥 Agrega esto */
-  transition: opacity 0.6s ease;
+  transition: opacity 0.4s ease;
 }
 
 @keyframes pulse {
@@ -113,7 +121,7 @@
   100% { opacity: 0.5; }
 }
 
-/* 🎬 Apertura cinematográfica */
+/* Apertura del telón */
 .open .left {
   transform: translateX(-110%) rotateY(8deg);
 }
@@ -122,9 +130,10 @@
   transform: translateX(110%) rotateY(-8deg);
 }
 
-/* =========================
-   CONTENIDO
-========================= */
+
+/* =====================================================
+   CONTENIDO INVITACIÓN
+===================================================== */
 
 body {
   margin: 0;
@@ -135,7 +144,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Fondo partículas doradas */
+/* Fondo con partículas doradas */
 body::before {
   content: "";
   position: fixed;
@@ -146,19 +155,25 @@ body::before {
   opacity: 0.7;
 }
 
-/* SIN fade — contenido visible desde inicio */
+/* Contenido visible desde inicio */
 main {
   position: relative;
   z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Línea decorativa superior */
 .ornament {
   width: 140px;
   height: 2px;
   background: linear-gradient(to right, transparent, var(--dorado), transparent);
-  margin: 80px auto 30px auto;
+  margin: 40px auto 20px auto;
 }
 
+/* Subtítulo */
 .subtitle {
   letter-spacing: 3px;
   font-size: 12px;
@@ -166,12 +181,14 @@ main {
   opacity: 0.65;
 }
 
+/* Título */
 .hero h1 {
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   margin: 10px 0 0;
 }
 
+/* Nombre con efecto brillo */
 .name {
   font-family: 'Parisienne', cursive;
   font-size: clamp(60px, 8vw, 92px);
@@ -183,6 +200,12 @@ main {
   margin-top: 10px;
 }
 
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Línea divisoria */
 .divider {
   width: 80px;
   height: 1px;
@@ -190,6 +213,7 @@ main {
   margin: 40px auto;
 }
 
+/* Detalles */
 .details {
   padding: 0 18px;
 }
@@ -205,7 +229,11 @@ main {
   margin: 8px 0 0;
 }
 
-/* Countdown */
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
 .countdown {
   display: flex;
   justify-content: center;
@@ -227,7 +255,6 @@ main {
   display: block;
   font-family: 'Playfair Display', serif;
   font-size: 22px;
-  color: var(--texto);
 }
 
 .cdItem small {
@@ -239,7 +266,11 @@ main {
   opacity: 0.7;
 }
 
-/* Botones */
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
 .actions {
   margin-top: 40px;
   padding: 0 18px;
@@ -250,7 +281,6 @@ main {
 }
 
 .btn {
-  display: inline-block;
   padding: 12px 22px;
   text-decoration: none;
   font-size: 12px;
@@ -279,7 +309,11 @@ main {
   color: var(--texto);
 }
 
-/* Mensaje */
+
+/* =====================================================
+   MENSAJE Y FOOTER
+===================================================== */
+
 .message {
   max-width: 520px;
   margin: 40px auto 0;
@@ -289,10 +323,9 @@ main {
   opacity: 0.78;
 }
 
-/* Footer */
 footer {
-  margin-top: 70px;
-  margin-bottom: 40px;
+  margin-top: 60px;
+  margin-bottom: 30px;
   font-size: 11px;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -300,12 +333,11 @@ footer {
   padding: 0 18px;
 }
 
-@keyframes shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
-}
 
-/* Mobile */
+/* =====================================================
+   MOBILE
+===================================================== */
+
 @media (max-width: 480px) {
   .ornament { margin-top: 46px; }
   .divider { margin: 34px auto; }
