@@ -4,8 +4,8 @@
 
 :root {
   --beige: #f6f2ef;   /* Fondo principal */
-  --dorado: #c6a26a;  /* Color acento */
-  --texto: #5c4a42;   /* Color texto */
+  --dorado: #c78fa3;  /* Color acento */
+  --texto: #6e4c57;   /* Color texto */
 }
 
 
@@ -192,10 +192,22 @@ main {
 .name {
   font-family: 'Parisienne', cursive;
   font-size: clamp(60px, 8vw, 92px);
-  background: linear-gradient(90deg, #c6a26a, #e8d4b8, #c6a26a);
+
+  /* 🌸 Degradado rosa viejo con brillo */
+  background: linear-gradient(
+    90deg,
+    #b76e8a 0%,
+    #e4b7c6 25%,
+    #f4d7e2 50%,
+    #e4b7c6 75%,
+    #b76e8a 100%
+  );
+
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
+  background-clip: text;
+
   animation: shimmer 6s linear infinite;
   margin-top: 10px;
 }
