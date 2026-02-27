@@ -363,12 +363,9 @@ footer {
    MOBILE
 ===================================================== */
 
-@media (max-width: 768px) {
-  body::after {
-    width: 180px;
-    height: 180px;
-    top: 20px;
-    left: 10px;
-  }
+@media (max-width: 480px) {
+  .ornament { margin-top: 46px; }
+  .divider { margin: 34px auto; }
+  .cdItem { min-width: 78px; }
+  footer { margin-top: 56px; }
 }
-
