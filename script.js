@@ -113,7 +113,7 @@ function buildWhatsappLink() {
     `${pad2(eventDate.getHours())}:${pad2(eventDate.getMinutes())}`;
 
   const msg =
-    `Hola! 🙌\n` +
+    `Hola Barbara!\n` +
     `Confirmo asistencia al cumpleaños de Victoria 🎀✨\n` +
     `📅 ${dateStr}\n` +
     `🕒 ${timeStr}\n` +
