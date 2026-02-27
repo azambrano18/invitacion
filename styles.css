@@ -1,149 +1,139 @@
 :root {
-    --rosa: #e8cfc6;
     --beige: #f6f2ef;
     --dorado: #c6a26a;
     --texto: #5c4a42;
 }
 
+/* INTRO SCREEN */
+#introScreen {
+    position: fixed;
+    inset: 0;
+    background: #111;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 1.5s ease;
+}
+
+.introContent {
+    text-align: center;
+    animation: fadeIntro 2s ease infinite alternate;
+}
+
+.introText {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 4px;
+    font-size: 14px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.introLine {
+    width: 120px;
+    height: 1px;
+    background: white;
+    margin: 20px auto;
+    opacity: 0.5;
+}
+
+@keyframes fadeIntro {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
+
+/* MAIN CONTENT */
 body {
     margin: 0;
     background: var(--beige);
     font-family: 'Montserrat', sans-serif;
     color: var(--texto);
     text-align: center;
-    overflow-x: hidden;
 }
 
-/* Ribbon */
-.ribbon {
-    font-size: 40px;
-    margin-top: 40px;
-    animation: float 3s ease-in-out infinite alternate;
+.texture::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(198,162,106,0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+    pointer-events: none;
 }
 
-.hero {
-    margin-top: 40px;
+main {
+    opacity: 0;
+    transition: opacity 2s ease;
 }
 
-.small {
-    letter-spacing: 2px;
-    font-size: 14px;
+.ornament {
+    width: 140px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--dorado), transparent);
+    margin: 80px auto 30px auto;
+}
+
+.subtitle {
+    letter-spacing: 3px;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.6;
 }
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
-    margin: 10px 0;
 }
 
 .name {
     font-family: 'Parisienne', cursive;
-    font-size: clamp(50px, 8vw, 80px);
-    background: linear-gradient(90deg, #c6a26a, #e8cfc6, #c6a26a);
+    font-size: clamp(60px, 8vw, 90px);
+    background: linear-gradient(90deg, #c6a26a, #e8d4b8, #c6a26a);
     background-size: 200% auto;
     color: transparent;
     -webkit-background-clip: text;
-    animation: shimmer 5s linear infinite;
+    animation: shimmer 6s linear infinite;
 }
 
-/* Details */
-.details {
-    margin-top: 30px;
-    font-size: 18px;
-}
-
-/* Buttons */
-.actions {
-    margin-top: 40px;
-}
-
-.btn, .btn-outline {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 24px;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
-    border-radius: 30px;
-    transition: 0.3s;
-}
-
-.btn {
+.divider {
+    width: 80px;
+    height: 1px;
     background: var(--dorado);
-    color: white;
+    margin: 40px auto;
 }
 
-.btn:hover {
-    background: #b68f55;
+.date {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
 }
 
-.btn-outline {
-    border: 1px solid var(--dorado);
-    color: var(--dorado);
-}
-
-.btn-outline:hover {
-    background: var(--dorado);
-    color: white;
-}
-
-footer {
-    margin-top: 60px;
-    font-size: 13px;
+.place {
     opacity: 0.7;
 }
 
-/* Sparkles */
-.sparkles::before,
-.sparkles::after {
-    content: "✨ ✨ ✨ ✨ ✨ ✨";
-    position: fixed;
-    width: 100%;
-    animation: sparkle 12s linear infinite;
-    opacity: 0.2;
-    font-size: 20px;
+.btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 28px;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    border-radius: 30px;
+    background: var(--dorado);
+    color: white;
+    text-transform: uppercase;
 }
 
-.sparkles::after {
-    top: 50%;
-    animation-delay: 6s;
+footer {
+    margin-top: 80px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
 }
 
-/* Ballet images */
-.ballet {
-    position: fixed;
-    width: 100px;
-    opacity: 0.15;
-    animation: sway 6s ease-in-out infinite alternate;
-}
-
-.top {
-    top: 60px;
-    left: 40px;
-}
-
-.bottom {
-    bottom: 60px;
-    right: 40px;
-}
-
-/* Animations */
 @keyframes shimmer {
     0% { background-position: 0% center; }
     100% { background-position: 200% center; }
-}
-
-@keyframes float {
-    from { transform: translateY(-5px); }
-    to { transform: translateY(5px); }
-}
-
-@keyframes sway {
-    from { transform: rotate(-3deg); }
-    to { transform: rotate(3deg); }
-}
-
-@keyframes sparkle {
-    0% { transform: translateY(100vh); }
-    100% { transform: translateY(-100vh); }
 }
