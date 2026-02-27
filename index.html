@@ -1,77 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Cumple 2 • Victoria Zambrano</title>
-  <meta name="theme-color" content="#F3A6A6" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Tipos modernos y legibles -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoria · 2 Años</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Parisienne&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="bg-orbs" aria-hidden="true">
-    <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
-  </div>
 
-  <main class="wrap">
-    <header class="card hero">
-      <div class="badge">🤠🐣🐰🐥</div>
-      <h1><span class="tiny">¡Estás invitad@ al</span><br>Cumple 2 de <span class="name">Victoria Zambrano</span></h1>
-      <p class="sub">Tema: <strong>Animales bebés + vaquera</strong> • tonos pastel (rojado, amarillo, marrón, beige)</p>
+<div class="sparkles"></div>
 
-      <div class="grid2">
-        <div class="pill">
-          <div class="k">📅 Fecha</div>
-          <div class="v">11.09.2026</div>
-        </div>
-        <div class="pill">
-          <div class="k">🕒 Hora</div>
-          <div class="v">15:00 (Chile (America/Santiago))</div>
-        </div>
-        <div class="pill">
-          <div class="k">📍 Lugar</div>
-          <div class="v">Molino Viejo, La Granja</div>
-        </div>
-        <a class="pill link" href="https://www.google.com/maps/search/?api=1&query=Molino+Viejo+La+Granja" target="_blank" rel="noopener">
-          <div class="k">🧭 Cómo llegar</div>
-          <div class="v">Abrir mapa</div>
-        </a>
-      </div>
-    </header>
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468371.png" class="ballet top">
+<img src="https://cdn-icons-png.flaticon.com/512/3468/3468371.png" class="ballet bottom">
 
-    <section class="card">
-      <h2>Cuenta regresiva</h2>
-      <div class="countdown" id="countdown" data-iso="2026-09-11T15:00:00">
-        <div class="t"><div class="n" id="d">—</div><div class="l">días</div></div>
-        <div class="t"><div class="n" id="h">—</div><div class="l">hrs</div></div>
-        <div class="t"><div class="n" id="m">—</div><div class="l">min</div></div>
-        <div class="t"><div class="n" id="s">—</div><div class="l">seg</div></div>
-      </div>
-      <p class="note">Tip: abre esto desde tu celu y agrégalo al calendario 😉</p>
+<main>
 
-      <div class="actions">
-        <a class="btn primary" href="event.ics">📅 Agregar al calendario</a>
-        <button class="btn" id="confetti">✨ Confetti</button>
-      </div>
-    </section>
+<div class="ribbon">🎀</div>
 
-    <section class="card">
-      <h2>Confirmación (RSVP)</h2>
-      <p>Confirma por WhatsApp para preparar todo perfecto 🧁</p>
-      <a class="btn primary" href="https://wa.me/56934232339?text=Hola!%20Confirmo%20asistencia%20al%20cumple%202%20de%20Victoria%20Zambrano%20🐥🤠%0ANombre:%20____%0AAsistimos:%20Sí/No%0ACantidad:%20____%0A" target="_blank" rel="noopener">✅ Confirmar por WhatsApp</a>
-      <p class="fine">Si aún no cambiaste el número, edita <code>WHATSAPP_NUMBER</code> en el script.</p>
-    </section>
+<section class="hero">
+    <p class="small">Estás invitado a celebrar</p>
+    <h1>Los 2 años de</h1>
+    <div class="name">Victoria</div>
+</section>
 
-    <footer class="footer">
-      <div class="mini">Hecho con ♥ para Victoria Zambrano</div>
-      <div class="mini">👢🍼🐮🐑🐤</div>
-    </footer>
-  </main>
+<section class="details">
+    <p><strong>11 de Septiembre · 3:00 PM</strong></p>
+    <p>Molino Viejo · La Granja</p>
+</section>
 
-  <canvas id="fx" aria-hidden="true"></canvas>
-  <script src="script.js"></script>
+<section class="actions">
+    <a href="event.ics" class="btn">Agregar al calendario</a>
+    <a href="https://azmabrano18.github.io/invitacion/" class="btn-outline">Confirmar asistencia</a>
+    <button onclick="toggleMusic()" class="btn-outline">🎵 Música</button>
+</section>
+
+<footer>
+    <p>Dress code: tonos pastel · ballet elegante 🩰</p>
+</footer>
+
+</main>
+
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c6d8f26f7.mp3?filename=gentle-piano-110624.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
 </body>
 </html>
