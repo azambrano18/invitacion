@@ -137,11 +137,24 @@
 
 body {
   margin: 0;
-  background: url("wallpaper1.png") center / cover no-repeat fixed;
+  background: url("wallpaper1.png") top left / cover no-repeat fixed;
+  background-color: var(--beige);
   font-family: 'Montserrat', sans-serif;
   color: var(--texto);
   text-align: center;
   overflow-x: hidden;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 60px;
+  left: 60px;
+  width: 320px;
+  height: 320px;
+  background: url("bailarina.png") no-repeat center / contain;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Fondo con partículas doradas */
@@ -355,5 +368,4 @@ footer {
   .divider { margin: 34px auto; }
   .cdItem { min-width: 78px; }
   footer { margin-top: 56px; }
-
 }
