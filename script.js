@@ -1,14 +1,15 @@
-const intro = document.getElementById("introScreen");
+const curtainContainer = document.getElementById("curtainContainer");
 const main = document.getElementById("mainContent");
 const music = document.getElementById("bgMusic");
 
-intro.addEventListener("click", () => {
+curtainContainer.addEventListener("click", () => {
+
     music.play();
 
-    intro.style.opacity = "0";
+    curtainContainer.classList.add("open");
 
     setTimeout(() => {
-        intro.style.display = "none";
-        main.style.opacity = "1";
-    }, 1500);
+        curtainContainer.style.display = "none";
+        main.classList.add("showContent");
+    }, 2000);
 });

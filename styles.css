@@ -4,46 +4,74 @@
     --texto: #5c4a42;
 }
 
-/* INTRO SCREEN */
-#introScreen {
+/* TELÓN */
+
+#curtainContainer {
     position: fixed;
     inset: 0;
-    background: #111;
-    color: white;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    transition: opacity 1.5s ease;
+    z-index: 9999;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.introContent {
-    text-align: center;
-    animation: fadeIntro 2s ease infinite alternate;
+.curtain {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to bottom, #3a001f, #1a000e);
+    transition: transform 2s ease;
+}
+
+.left {
+    border-right: 2px solid #600030;
+}
+
+.right {
+    border-left: 2px solid #600030;
+}
+
+.stageLight {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 600px;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.3), transparent 70%);
+    pointer-events: none;
 }
 
 .introText {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
     font-family: 'Playfair Display', serif;
     letter-spacing: 4px;
     font-size: 14px;
     text-transform: uppercase;
-    opacity: 0.8;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-.introLine {
-    width: 120px;
-    height: 1px;
-    background: white;
-    margin: 20px auto;
-    opacity: 0.5;
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
 }
 
-@keyframes fadeIntro {
-    from { opacity: 0.5; }
-    to { opacity: 1; }
+/* CUANDO SE ABRE */
+.open .left {
+    transform: translateX(-100%);
 }
 
-/* MAIN CONTENT */
+.open .right {
+    transform: translateX(100%);
+}
+
+/* CONTENIDO */
+
 body {
     margin: 0;
     background: var(--beige);
@@ -52,19 +80,13 @@ body {
     text-align: center;
 }
 
-.texture::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(rgba(198,162,106,0.15) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.2;
-    pointer-events: none;
-}
-
 main {
     opacity: 0;
     transition: opacity 2s ease;
+}
+
+.showContent {
+    opacity: 1;
 }
 
 .ornament {
