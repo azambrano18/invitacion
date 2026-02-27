@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Invitacion Victoria Zambrano//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:victoria zambrano-20260911T150000@inv
+DTSTAMP:20260227T155933Z
+DTSTART:20260911T150000
+DTEND:20260911T170000
+SUMMARY:Cumple 2 de Victoria Zambrano
+LOCATION:Molino Viejo, La Granja
+DESCRIPTION:Cumple 2 de Victoria Zambrano - Tema: Animales bebés + vaquera.\nLugar: Molino Viejo, La Granja.\nMapa: https://www.google.com/maps/search/?api=1&query=Molino+Viejo+La+Granja
+END:VEVENT
+END:VCALENDAR
