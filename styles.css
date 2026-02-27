@@ -147,17 +147,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Fondo con partículas doradas */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(rgba(198, 162, 106, 0.14) 1px, transparent 1px);
-  background-size: 42px 42px;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
 /* Contenido visible desde inicio */
 main {
   position: relative;
@@ -191,33 +180,16 @@ main {
   margin: 10px 0 0;
 }
 
-/* Nombre con efecto brillo */
+/* =========================
+   NOMBRE: Victoria
+========================= */
+
 .name {
   font-family: 'Parisienne', cursive;
   font-size: clamp(60px, 8vw, 92px);
-
-  /* Degradado rosa viejo con brillo */
-  background: linear-gradient(
-    90deg,
-    #b76e8a 0%,
-    #e4b7c6 25%,
-    #f4d7e2 50%,
-    #e4b7c6 75%,
-    #b76e8a 100%
-  );
-
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  animation: shimmer 6s linear infinite;
-  margin-top: 10px;
-}
-
-@keyframes shimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
+  color: #b76e8a;
+  position: relative;
+  margin-top: 30px;
 }
 
 /* Línea divisoria */
@@ -244,6 +216,32 @@ main {
   margin: 8px 0 0;
 }
 
+/* ==============================
+   BAILARINA MARCA DE AGUA
+============================== */
+
+.balletWatermark {
+  position: fixed;
+
+  width: 420px;        /* tamaño */
+  opacity: 0.07;       /* transparencia */
+
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+  z-index: 1;
+
+  animation: floatBallet 7s ease-in-out infinite;
+}
+
+/* Animación flotante suave */
+@keyframes floatBallet {
+  0%   { transform: translate(-50%, -50%) translateY(0px); }
+  50%  { transform: translate(-50%, -50%) translateY(-14px); }
+  100% { transform: translate(-50%, -50%) translateY(0px); }
+}
 
 /* =====================================================
    COUNTDOWN
@@ -346,40 +344,6 @@ footer {
   text-transform: uppercase;
   opacity: 0.65;
   padding: 0 18px;
-}
-
-/* =====================================================
-   LLUVIA DE DESTELLOS ELEGANTE
-===================================================== */
-
-.sparkleLayer {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.sparkleLayer::before,
-.sparkleLayer::after {
-  content: "";
-  position: absolute;
-  inset: -200px;
-  background-image: radial-gradient(#ffffffaa 1px, transparent 1px);
-  background-size: 45px 45px;
-  animation: sparkleFall 20s linear infinite;
-  opacity: 0.4;
-}
-
-.sparkleLayer::after {
-  background-size: 60px 60px;
-  animation-duration: 35s;
-  opacity: 0.25;
-}
-
-@keyframes sparkleFall {
-  from { transform: translateY(-200px); }
-  to   { transform: translateY(100vh); }
 }
 
 /* =====================================================
