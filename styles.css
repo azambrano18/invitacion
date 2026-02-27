@@ -137,7 +137,7 @@
 
 body {
   margin: 0;
-  background: url("wallpaper1.png") top left / cover no-repeat fixed;
+  background: url("wallpaper3.png") top left / cover no-repeat fixed;
   background-color: var(--beige);
   font-family: 'Montserrat', sans-serif;
   color: var(--texto);
@@ -369,3 +369,4 @@ footer {
   .cdItem { min-width: 78px; }
   footer { margin-top: 56px; }
 }
+
