@@ -1,5 +1,4 @@
 const curtainContainer = document.getElementById("curtainContainer");
-const main = document.getElementById("mainContent");
 const music = document.getElementById("bgMusic");
 
 // Countdown elements
@@ -10,12 +9,12 @@ const cdMins = document.getElementById("cdMins");
 // RSVP WhatsApp button
 const rsvpBtn = document.getElementById("rsvpBtn");
 
-// Evento: 11 Septiembre 2026 15:00 (hora local)
 const eventDate = new Date(2026, 8, 11, 15, 0, 0);
+const whatsappNumber = "56994394655";
 
-// Ajusta aquí el número WhatsApp (formato internacional sin +, sin espacios)
-// Ejemplo Chile: 569XXXXXXXX
-const whatsappNumber = "569XXXXXXXX";
+/* =========================
+   COUNTDOWN
+========================= */
 
 function pad2(n) {
   return String(n).padStart(2, "0");
@@ -53,31 +52,46 @@ function buildWhatsappLink() {
     `🕒 ${timeStr}\n` +
     `¿Hay algo que deba llevar?`;
 
-  const encoded = encodeURIComponent(msg);
-  return `https://wa.me/${whatsappNumber}?text=${encoded}`;
+  return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
 }
 
-curtainContainer.addEventListener("click", async () => {
-  // Música: mejor compatibilidad iOS
-  try {
-    await music.play();
-  } catch (err) {
-    // Si iOS bloquea, igual continuamos (el usuario ya tocó)
-    console.log("Autoplay bloqueado o error:", err);
-  }
+/* =========================
+   TELÓN CINEMATOGRÁFICO
+========================= */
+curtainContainer.addEventListener("click", () => {
 
+  // Evita múltiples clicks
+  if (curtainContainer.classList.contains("open")) return;
+
+  // 🔥 1️⃣ Eliminamos el texto INMEDIATAMENTE
+  const introText = document.querySelector(".introText");
+  if (introText) introText.remove();
+
+  // 2️⃣ Abrimos el telón
   curtainContainer.classList.add("open");
 
-  setTimeout(() => {
-    curtainContainer.style.display = "none";
-    main.classList.add("showContent");
-    main.setAttribute("aria-hidden", "false");
-  }, 2000);
+  // 3️⃣ Cuando termine la animación
+  setTimeout(async () => {
+
+    // Bajamos el telón en la capa visual
+    curtainContainer.style.zIndex = "-1";
+    curtainContainer.style.pointerEvents = "none";
+
+    // 🎵 Ahora comienza la música
+    try {
+      await music.play();
+    } catch (err) {
+      console.log("Autoplay bloqueado:", err);
+    }
+
+  }, 2200);
+
 });
 
-// Init
-updateCountdown();
-setInterval(updateCountdown, 30_000);
+/* =========================
+   INIT
+========================= */
 
-// RSVP
+updateCountdown();
+setInterval(updateCountdown, 30000);
 rsvpBtn.href = buildWhatsappLink();

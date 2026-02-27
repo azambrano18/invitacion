@@ -4,7 +4,10 @@
   --texto: #5c4a42;
 }
 
-/* TELÓN */
+/* =========================
+   TELÓN REALISTA
+========================= */
+
 #curtainContainer {
   position: fixed;
   inset: 0;
@@ -13,66 +16,116 @@
   overflow: hidden;
   cursor: pointer;
   user-select: none;
+  perspective: 1200px;
+  background: transparent; /* 🔥 CLAVE */
 }
 
 .curtain {
   width: 50%;
   height: 100%;
-  background: linear-gradient(to bottom, #3a001f, #1a000e);
-  transition: transform 2s ease;
+  position: relative;
+  transition: transform 2.2s cubic-bezier(.7,0,.3,1);
+  transform-origin: center;
+  overflow: hidden;
+
+  background: linear-gradient(to bottom, #3a001f, #1a000e); /* 🔥 aquí */
 }
 
-.left { border-right: 2px solid #600030; }
-.right { border-left: 2px solid #600030; }
+/* Pliegues tipo terciopelo */
+.curtain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #4b0027 0px,
+      #5a0030 18px,
+      #3a001f 36px,
+      #5a0030 54px
+    );
+}
 
+/* 🎭 Sombras profundas */
+.curtain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.08), transparent 70%),
+    linear-gradient(to right, rgba(0,0,0,0.6), transparent 40%, transparent 60%, rgba(0,0,0,0.6));
+  pointer-events: none;
+}
+
+/* Separación central */
+.left {
+  border-right: 3px solid #2a0015;
+}
+
+.right {
+  border-left: 3px solid #2a0015;
+}
+
+/* Luz del escenario */
 .stageLight {
   position: absolute;
-  top: -20%;
+  top: -25%;
   left: 50%;
   transform: translateX(-50%);
-  width: 420px;
-  height: 640px;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.28), transparent 70%);
+  width: 500px;
+  height: 700px;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.35), transparent 70%);
   pointer-events: none;
-  filter: blur(0.2px);
+  animation: lightPulse 4s ease-in-out infinite;
 }
 
+@keyframes lightPulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* Texto centrado perfecto */
 .introText {
   position: absolute;
-  width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   color: white;
   font-family: 'Playfair Display', serif;
   letter-spacing: 4px;
-  font-size: 14px;
+  font-size: 18px;
   text-transform: uppercase;
   animation: pulse 2s ease-in-out infinite;
-  padding: 0 18px;
-}
+  padding: 0 20px;
+  z-index: 20;
+  text-shadow: 0 4px 25px rgba(0,0,0,0.8);
 
-.introText .hint {
-  display: block;
-  margin-top: 10px;
-  font-family: 'Montserrat', sans-serif;
-  letter-spacing: 2px;
-  font-size: 11px;
-  opacity: 0.8;
-  text-transform: none;
+  /* 🔥 Agrega esto */
+  transition: opacity 0.6s ease;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.45; }
+  0% { opacity: 0.5; }
   50% { opacity: 1; }
-  100% { opacity: 0.45; }
+  100% { opacity: 0.5; }
 }
 
-/* ABRIR TELÓN */
-.open .left { transform: translateX(-100%); }
-.open .right { transform: translateX(100%); }
+/* 🎬 Apertura cinematográfica */
+.open .left {
+  transform: translateX(-110%) rotateY(8deg);
+}
 
-/* CONTENIDO */
+.open .right {
+  transform: translateX(110%) rotateY(-8deg);
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
 body {
   margin: 0;
   background: var(--beige);
@@ -82,7 +135,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Fondo con partículas doradas suaves */
+/* Fondo partículas doradas */
 body::before {
   content: "";
   position: fixed;
@@ -93,15 +146,10 @@ body::before {
   opacity: 0.7;
 }
 
+/* SIN fade — contenido visible desde inicio */
 main {
-  opacity: 0;
-  transition: opacity 2s ease;
   position: relative;
   z-index: 1;
-}
-
-.showContent {
-  opacity: 1;
 }
 
 .ornament {
@@ -212,16 +260,11 @@ main {
   color: white;
   text-transform: uppercase;
   transition: transform 0.15s ease, filter 0.15s ease;
-  will-change: transform;
 }
 
 .btn:hover {
   transform: translateY(-1px);
   filter: brightness(1.02);
-}
-
-.btn:active {
-  transform: translateY(0px);
 }
 
 .btn.outline {
@@ -236,7 +279,7 @@ main {
   color: var(--texto);
 }
 
-/* Mensaje emocional */
+/* Mensaje */
 .message {
   max-width: 520px;
   margin: 40px auto 0;
@@ -264,19 +307,8 @@ footer {
 
 /* Mobile */
 @media (max-width: 480px) {
-  .ornament {
-    margin-top: 46px;
-  }
-
-  .divider {
-    margin: 34px auto;
-  }
-
-  .cdItem {
-    min-width: 78px;
-  }
-
-  footer {
-    margin-top: 56px;
-  }
+  .ornament { margin-top: 46px; }
+  .divider { margin: 34px auto; }
+  .cdItem { min-width: 78px; }
+  footer { margin-top: 56px; }
 }
