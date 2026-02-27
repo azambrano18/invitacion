@@ -224,7 +224,7 @@ main {
   position: absolute;
 
   width: clamp(220px, 60vw, 420px);
-  opacity: 0.2;
+  opacity: 0.4;
 
   top: 30%;
   left: 50%;
@@ -350,4 +350,5 @@ footer {
   footer { margin-top: 56px; }
 
 }
+
 
