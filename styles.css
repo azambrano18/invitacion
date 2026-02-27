@@ -145,18 +145,6 @@ body {
   overflow-x: hidden;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  top: 60px;
-  left: 60px;
-  width: 320px;
-  height: 320px;
-  background: url("bailarina.png") no-repeat center / contain;
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* Fondo con partículas doradas */
 body::before {
   content: "";
@@ -171,7 +159,7 @@ body::before {
 /* Contenido visible desde inicio */
 main {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -369,5 +357,3 @@ footer {
   .cdItem { min-width: 78px; }
   footer { margin-top: 56px; }
 }
-
-
