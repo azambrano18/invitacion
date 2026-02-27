@@ -8,7 +8,7 @@
 */
 
 const curtainContainer = document.getElementById("curtainContainer"); // Telón completo
-const music = document.getElementById("bgMusic");                     // Música de fondo
+const sparkleSound = document.getElementById("sparkleSound");
 
 // Elementos del contador regresivo
 const cdDays = document.getElementById("cdDays");
@@ -114,10 +114,10 @@ function buildWhatsappLink() {
 
   const msg =
     `Hola Barbara!\n` +
-    `Confirmo asistencia al cumpleaños de Victoria 🎀✨\n` +
+    `Confirmo asistencia al cumpleaños de la Princesa Victoria 🎀✨\n` +
     `📅 ${dateStr}\n` +
     `🕒 ${timeStr}\n` +
-    `¿Hay algo que deba llevar?`;
+    `Nos vemos pronto!`;
 
   // encodeURIComponent evita errores con emojis y saltos de línea
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
@@ -137,40 +137,32 @@ function buildWhatsappLink() {
   5. Inicia música.
 */
 
-curtainContainer.addEventListener("click", () => {
+curtainContainer.addEventListener("click", async () => {
 
-  // Evita doble click durante animación
   if (curtainContainer.classList.contains("open")) return;
 
-  // 1️⃣ Eliminamos texto inicial inmediatamente
+  // ✨ 1️⃣ Sonido mágico inmediato
+  try {
+    sparkleSound.currentTime = 0;
+    await sparkleSound.play();
+  } catch (err) {
+    console.log("Error sparkle:", err);
+  }
+
+  // 2️⃣ Eliminar texto
   const introText = document.querySelector(".introText");
   if (introText) introText.remove();
 
-  // 2️⃣ Activamos animación de apertura
+  // 3️⃣ Abrir telón
   curtainContainer.classList.add("open");
 
-  /*
-    3️⃣ Esperamos 2200ms.
-    Debe coincidir con el tiempo definido en CSS:
-    transition: transform 2.2s
-  */
-  setTimeout(async () => {
-
-    // 4️⃣ Sacamos el telón del flujo visual
+  // 4️⃣ Cuando termine animación, bajamos el telón
+  setTimeout(() => {
     curtainContainer.style.zIndex = "-1";
     curtainContainer.style.pointerEvents = "none";
-
-    // 5️⃣ Iniciamos música (compatible con iOS)
-    try {
-      await music.play();
-    } catch (err) {
-      console.log("Autoplay bloqueado:", err);
-    }
-
   }, 2200);
 
 });
-
 
 /* =====================================================
    INIT (INICIALIZACIÓN)

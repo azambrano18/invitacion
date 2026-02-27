@@ -104,10 +104,12 @@
   justify-content: center;
   text-align: center;
   color: white;
-  font-family: 'Montserrat', sans-serif; "----> tipo de letra del telon"
+
+  font-family: 'Montserrat', sans-serif; /* tipo de letra del telón */
+  font-size: 16px; /* tamaño de letra del telón */
+  text-transform: uppercase; /* mayúsculas */
+
   letter-spacing: 4px;
-  font-size: 26px; "----> tamaño de letra del telon"
-  "text-transform: uppercase;" "------> mayusculas"
   animation: pulse 2s ease-in-out infinite;
   padding: 0 20px;
   z-index: 20;
@@ -194,7 +196,7 @@ main {
   font-family: 'Parisienne', cursive;
   font-size: clamp(60px, 8vw, 92px);
 
-  /* 🌸 Degradado rosa viejo con brillo */
+  /* Degradado rosa viejo con brillo */
   background: linear-gradient(
     90deg,
     #b76e8a 0%,
@@ -346,6 +348,39 @@ footer {
   padding: 0 18px;
 }
 
+/* =====================================================
+   LLUVIA DE DESTELLOS ELEGANTE
+===================================================== */
+
+.sparkleLayer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sparkleLayer::before,
+.sparkleLayer::after {
+  content: "";
+  position: absolute;
+  inset: -200px;
+  background-image: radial-gradient(#ffffffaa 1px, transparent 1px);
+  background-size: 45px 45px;
+  animation: sparkleFall 20s linear infinite;
+  opacity: 0.4;
+}
+
+.sparkleLayer::after {
+  background-size: 60px 60px;
+  animation-duration: 35s;
+  opacity: 0.25;
+}
+
+@keyframes sparkleFall {
+  from { transform: translateY(-200px); }
+  to   { transform: translateY(100vh); }
+}
 
 /* =====================================================
    MOBILE
@@ -356,5 +391,4 @@ footer {
   .divider { margin: 34px auto; }
   .cdItem { min-width: 78px; }
   footer { margin-top: 56px; }
-
 }

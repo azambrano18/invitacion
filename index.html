@@ -7,27 +7,15 @@
   ====================================================== -->
 
   <meta charset="UTF-8" />
-  <!-- Permite caracteres especiales como tildes y emojis -->
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Hace que el diseño sea responsive en móviles -->
-
   <title>Victoria · 2 Años</title>
-  <!-- Título que aparece en la pestaña del navegador -->
-
 
   <!-- =====================================================
-       FUENTES TIPOGRÁFICAS (Google Fonts)
+       FUENTES TIPOGRÁFICAS
   ====================================================== -->
-
-  <!--
-    Playfair Display → Títulos elegantes
-    Parisienne → Nombre Victoria (estilo ballet)
-    Montserrat → Texto general
-  -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Parisienne&family=Montserrat:wght@300;500&display=swap" rel="stylesheet" />
 
-  <!-- Hoja de estilos principal -->
+  <!-- Estilos -->
   <link rel="stylesheet" href="styles.css" />
 
 </head>
@@ -35,25 +23,20 @@
 <body>
 
   <!-- =====================================================
-       TELÓN CINEMATOGRÁFICO (Pantalla inicial)
+       CAPA DE DESTELLOS (ESTRELLAS)
   ====================================================== -->
+  <div class="sparkleLayer"></div>
 
-  <!--
-    Este div cubre toda la pantalla.
-    Se abre al hacer click.
-  -->
+
+  <!-- =====================================================
+       TELÓN CINEMATOGRÁFICO
+  ====================================================== -->
   <div id="curtainContainer" role="button" aria-label="Toca para comenzar">
 
-    <!-- Cortina izquierda -->
     <div class="curtain left"></div>
-
-    <!-- Cortina derecha -->
     <div class="curtain right"></div>
-
-    <!-- Luz de escenario -->
     <div class="stageLight"></div>
 
-    <!-- Texto inicial centrado -->
     <div class="introText">
       Haz una reverencia y toca para comenzar...
     </div>
@@ -64,113 +47,55 @@
   <!-- =====================================================
        AUDIO DE FONDO
   ====================================================== -->
-
-  <!--
-    loop → se repite continuamente
-    preload="auto" → carga anticipadamente
-    Se activa desde script.js después de abrir el telón
-  -->
-  <audio id="bgMusic" loop preload="auto">
-    <source src="swanlake.mp3" type="audio/mpeg" />
-  </audio>
-
+<audio id="sparkleSound" preload="auto">
+  <source src="sparkle.mp3" type="audio/mpeg" />
+</audio>
 
   <!-- =====================================================
-       CONTENIDO PRINCIPAL DE LA INVITACIÓN
+       CONTENIDO PRINCIPAL
   ====================================================== -->
-
-  <!--
-    main contiene toda la invitación visible.
-    Está debajo del telón.
-  -->
   <main id="mainContent" aria-hidden="true">
 
-    <!-- Línea decorativa superior -->
     <div class="ornament"></div>
 
-
-    <!-- =========================
-         HERO (TÍTULO PRINCIPAL)
-    ========================== -->
+    <!-- HERO -->
     <section class="hero">
-
-      <p class="subtitle">
-        Estás invitado a celebrar
-      </p>
-
-      <h1>
-        Los 2 años de
-      </h1>
-
-      <!-- Nombre protagonista -->
-      <div class="name">
-        Victoria
-      </div>
-
+      <p class="subtitle">Estás invitado a celebrar</p>
+      <h1>Los 2 años de</h1>
+      <div class="name">Victoria</div>
     </section>
 
-
-    <!-- Línea divisoria -->
     <div class="divider"></div>
 
-
-    <!-- =========================
-         DETALLES DEL EVENTO
-    ========================== -->
+    <!-- DETALLES -->
     <section class="details">
+      <p class="date">11 de Septiembre · 3:00 PM</p>
+      <p class="place">Molino Viejo · La Granja</p>
 
-      <!-- Fecha -->
-      <p class="date">
-        11 de Septiembre · 3:00 PM
-      </p>
-
-      <!-- Lugar -->
-      <p class="place">
-        Molino Viejo · La Granja
-      </p>
-
-
-      <!-- =========================
-           COUNTDOWN (Cuenta regresiva)
-      ========================== -->
-
-      <!--
-        Los spans se actualizan dinámicamente
-        desde script.js
-      -->
+      <!-- COUNTDOWN -->
       <div class="countdown" aria-label="Cuenta regresiva">
-
         <div class="cdItem">
           <span id="cdDays">--</span>
           <small>días</small>
         </div>
-
         <div class="cdItem">
           <span id="cdHours">--</span>
           <small>horas</small>
         </div>
-
         <div class="cdItem">
           <span id="cdMins">--</span>
           <small>min</small>
         </div>
-
       </div>
-
     </section>
 
-
-    <!-- =========================
-         BOTONES DE ACCIÓN
-    ========================== -->
+    <!-- BOTONES -->
     <section class="actions">
 
-      <!-- Descargar archivo .ics -->
       <a href="event.ics" class="btn" download>
         Agregar al calendario
       </a>
 
-      <!-- Abrir Google Maps -->
       <a
         href="https://www.google.com/maps/search/?api=1&query=Molino+Viejo+La+Granja"
         target="_blank"
@@ -180,7 +105,6 @@
         Ver ubicación
       </a>
 
-      <!-- Botón RSVP (link generado dinámicamente en JS) -->
       <a
         id="rsvpBtn"
         href="#"
@@ -193,10 +117,7 @@
 
     </section>
 
-
-    <!-- =========================
-         MENSAJE EMOCIONAL
-    ========================== -->
+    <!-- MENSAJE -->
     <section class="message">
       <p>
         Con mucha ilusión celebramos dos años de risas, sueños y pequeños pasos
@@ -206,10 +127,7 @@
       </p>
     </section>
 
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
+    <!-- FOOTER -->
     <footer>
       <p class="dress">
         Dress code · tonos pastel · ballet elegante
@@ -218,17 +136,9 @@
 
   </main>
 
-
   <!-- =====================================================
-       SCRIPT PRINCIPAL
+       SCRIPT
   ====================================================== -->
-
-  <!-- Controla:
-       - Animación telón
-       - Música
-       - Countdown
-       - WhatsApp dinámico
-  -->
   <script src="script.js"></script>
 
 </body>
