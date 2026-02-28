@@ -1,12 +1,145 @@
+/* =====================================================
+   VARIABLES GLOBALES (CAMBIAR COLORES AQUÍ)
+===================================================== */
+
 :root {
-  --beige: #f6f2ef;
-  --dorado: #c78fa3;
-  --texto: #6e4c57;
+  --beige: #f6f2ef;   /* Fondo principal */
+  --dorado: #c78fa3;  /* Color acento */
+  --texto: #6e4c57;   /* Color texto */
 }
+
+
+/* =====================================================
+   TELÓN CINEMATOGRÁFICO
+===================================================== */
+
+/* Contenedor superior que cubre toda la pantalla */
+#curtainContainer {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  z-index: 9999;           /* Siempre encima */
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  perspective: 1200px;     /* Profundidad 3D */
+  background: transparent; /* NO debe tapar la invitación */
+}
+
+/* Cada cortina ocupa la mitad */
+.curtain {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  /* Velocidad de apertura */
+  transition: transform 2.2s cubic-bezier(.7,0,.3,1);
+  transform-origin: center;
+
+  /* Color base del terciopelo */
+  background: linear-gradient(to bottom, #3a001f, #1a000e);
+}
+
+/* Textura tipo pliegues de terciopelo */
+.curtain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #4b0027 0px,
+      #5a0030 18px,
+      #3a001f 36px,
+      #5a0030 54px
+    );
+}
+
+/* Sombras profundas */
+.curtain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(255,255,255,0.08), transparent 70%),
+    linear-gradient(to right, rgba(0,0,0,0.6), transparent 40%, transparent 60%, rgba(0,0,0,0.6));
+  pointer-events: none;
+}
+
+/* Línea central */
+.left {
+  border-right: 3px solid #2a0015;
+}
+
+.right {
+  border-left: 3px solid #2a0015;
+}
+
+/* Luz del escenario */
+.stageLight {
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 700px;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.35), transparent 70%);
+  pointer-events: none;
+  animation: lightPulse 4s ease-in-out infinite;
+}
+
+@keyframes lightPulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* Texto inicial centrado */
+.introText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+
+  font-family: 'Montserrat', sans-serif; /* tipo de letra del telón */
+  font-size: 16px; /* tamaño de letra del telón */
+  text-transform: uppercase; /* mayúsculas */
+
+  letter-spacing: 4px;
+  animation: pulse 2s ease-in-out infinite;
+  padding: 0 20px;
+  z-index: 20;
+  text-shadow: 0 4px 25px rgba(0,0,0,0.8);
+  transition: opacity 0.4s ease;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* Apertura del telón */
+.open .left {
+  transform: translateX(-110%) rotateY(8deg);
+}
+
+.open .right {
+  transform: translateX(110%) rotateY(-8deg);
+}
+
+
+/* =====================================================
+   CONTENIDO INVITACIÓN
+===================================================== */
 
 body {
   margin: 0;
-  background: url("wallpaper.jpeg") center top / cover no-repeat;
+  background: url("wallpaper.jpeg") top left / cover no-repeat fixed;
   background-color: var(--beige);
   font-family: 'Montserrat', sans-serif;
   color: var(--texto);
@@ -14,128 +147,185 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== TELÓN ===== */
-
-#curtainContainer {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  z-index: 9999;
-  overflow: hidden;
-  cursor: pointer;
-  perspective: 1200px;
-}
-
-.curtain {
-  width: 50%;
-  height: 100%;
-  transition: transform 2.2s cubic-bezier(.7,0,.3,1);
-  background: linear-gradient(to bottom, #3a001f, #1a000e);
-}
-
-.open .left {
-  transform: translateX(-110%);
-}
-
-.open .right {
-  transform: translateX(110%);
-}
-
-.stageLight {
-  position: absolute;
-  top: -25%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 400px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
-}
-
-/* ===== CONTENIDO ===== */
-
+/* Contenido visible desde inicio */
 main {
-  padding: 60px 20px 80px;
   position: relative;
   z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
+/* Línea decorativa superior */
 .ornament {
-  width: 120px;
+  width: 140px;
   height: 2px;
   background: linear-gradient(to right, transparent, var(--dorado), transparent);
-  margin: 30px auto;
+  margin: 40px auto 20px auto;
 }
 
+/* Subtítulo */
 .subtitle {
-  font-size: 11px;
-  letter-spacing: 2px;
-  opacity: 0.7;
+  letter-spacing: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.65;
 }
 
+/* Título */
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  margin: 5px 0;
+  font-weight: 400;
+  margin: 10px 0 0;
 }
+
+/* =========================
+   NOMBRE: Victoria
+========================= */
 
 .name {
   font-family: 'Parisienne', cursive;
-  font-size: clamp(48px, 12vw, 80px);
+  font-size: clamp(60px, 8vw, 92px);
   color: #b76e8a;
-  margin-top: 15px;
+  position: relative;
+  margin-top: 30px;
 }
 
+/* Línea divisoria */
 .divider {
-  width: 70px;
+  width: 80px;
   height: 1px;
   background: var(--dorado);
-  margin: 20px auto;
+  margin: 15px auto;
 }
 
-/* ===== COUNTDOWN ===== */
+/* Detalles */
+.details {
+  padding: 0 18px;
+}
+
+.date {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  margin: 0;
+}
+
+.place {
+  opacity: 0.75;
+  margin: 8px 0 0;
+}
+
+/* ==============================
+   BAILARINA MARCA DE AGUA
+============================== */
+
+.balletWatermark {
+  position: fixed;
+
+  width: clamp(220px, 60vw, 420px);
+  opacity: 0.07;
+
+  top: 40%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+
+  animation: balletDance 20s ease-in-out infinite;
+
+  will-change: transform;
+}
+
+@keyframes balletDance {
+
+  0% {
+    transform: translate(-50%, -50%) translateX(0px) translateY(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) translateX(10px) translateY(-20px) rotate(-3deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translateX(-15px) translateY(10px) rotate(3deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) translateX(12px) translateY(-15px) rotate(-2deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translateX(0px) translateY(0px) rotate(0deg);
+  }
+}
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
 
 .countdown {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-top: 25px;
+  gap: 14px;
+  margin: 22px auto 0;
+  max-width: 420px;
 }
 
 .cdItem {
-  min-width: 72px;
-  padding: 8px 10px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.6);
+  min-width: 86px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(198, 162, 106, 0.22);
+  backdrop-filter: blur(4px);
 }
 
 .cdItem span {
+  display: block;
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .cdItem small {
-  font-size: 9px;
+  display: block;
+  margin-top: 2px;
   letter-spacing: 2px;
+  font-size: 10px;
   text-transform: uppercase;
+  opacity: 0.7;
 }
 
-/* ===== BOTONES ===== */
+
+/* =====================================================
+   BOTONES
+===================================================== */
 
 .actions {
-  margin-top: 35px;
+  margin-top: 40px;
+  padding: 0 18px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn {
-  padding: 14px 18px;
-  border-radius: 30px;
-  font-size: 11px;
+  padding: 12px 22px;
   text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border-radius: 30px;
   background: var(--dorado);
   color: white;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
 }
 
 .btn.outline {
@@ -145,45 +335,42 @@ main {
 }
 
 .btn.ghost {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(198, 162, 106, 0.22);
   color: var(--texto);
 }
 
-/* ===== MENSAJE ===== */
+
+/* =====================================================
+   MENSAJE Y FOOTER
+===================================================== */
 
 .message {
-  margin-top: 35px;
+  max-width: 520px;
+  margin: 40px auto 0;
+  padding: 0 18px;
   font-size: 14px;
-  line-height: 1.6;
-  padding: 0 10px;
+  line-height: 1.7;
+  opacity: 0.78;
 }
 
 footer {
-  margin-top: 30px;
-  font-size: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 11px;
   letter-spacing: 3px;
-  opacity: 0.6;
+  text-transform: uppercase;
+  opacity: 0.65;
+  padding: 0 18px;
 }
 
-/* ===== BAILARINA ===== */
+/* =====================================================
+   MOBILE
+===================================================== */
 
-.balletWatermark {
-  position: fixed;
-  width: 65vw;
-  opacity: 0.06;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 0;
-  animation: balletDance 25s ease-in-out infinite;
-  will-change: transform;
-}
-
-@keyframes balletDance {
-  0%   { transform: translate(-50%, -50%) translateX(0) translateY(0) rotate(0deg); }
-  25%  { transform: translate(-50%, -50%) translateX(10px) translateY(-15px) rotate(-2deg); }
-  50%  { transform: translate(-50%, -50%) translateX(-12px) translateY(8px) rotate(2deg); }
-  75%  { transform: translate(-50%, -50%) translateX(8px) translateY(-10px) rotate(-1deg); }
-  100% { transform: translate(-50%, -50%) translateX(0) translateY(0) rotate(0deg); }
+@media (max-width: 480px) {
+  .ornament { margin-top: 46px; }
+  .divider { margin: 34px auto; }
+  .cdItem { min-width: 78px; }
+  footer { margin-top: 56px; }
 }

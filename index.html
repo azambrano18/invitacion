@@ -1,33 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
+  <!-- =====================================================
+       CONFIGURACIÓN BÁSICA
+  ====================================================== -->
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Victoria · 2 Años</title>
 
+  <!-- =====================================================
+       FUENTES TIPOGRÁFICAS
+  ====================================================== -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Parisienne&family=Montserrat:wght@300;500&display=swap" rel="stylesheet" />
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="styles.css" />
+
 </head>
 
 <body>
 
-  <div id="curtainContainer" role="button">
+  <!-- =====================================================
+       CAPA DE DESTELLOS (ESTRELLAS)
+  ====================================================== -->
+  <div class="sparkleLayer"></div>
+
+
+  <!-- =====================================================
+       TELÓN CINEMATOGRÁFICO
+  ====================================================== -->
+  <div id="curtainContainer" role="button" aria-label="Toca para comenzar">
+
     <div class="curtain left"></div>
     <div class="curtain right"></div>
     <div class="stageLight"></div>
-    <div class="introText">Haz una reverencia y toca para comenzar...</div>
+
+    <div class="introText">
+      Haz una reverencia y toca para comenzar...
+    </div>
+
   </div>
 
-  <audio id="sparkleSound" preload="auto">
-    <source src="sparkle.mp3" type="audio/mpeg" />
-  </audio>
 
-  <img src="bailarina.png" class="balletWatermark" alt="Bailarina">
+  <!-- =====================================================
+       AUDIO DE FONDO
+  ====================================================== -->
+<audio id="sparkleSound" preload="auto">
+  <source src="sparkle.mp3" type="audio/mpeg" />
+</audio>
 
-  <main>
+  <!-- =====================================================
+       CONTENIDO PRINCIPAL
+  ====================================================== -->
+  <main id="mainContent" aria-hidden="true">
+
+    <img src="bailarina.png" class="balletWatermark" alt="Bailarina">
 
     <div class="ornament"></div>
 
+    <!-- HERO -->
     <section class="hero">
       <p class="subtitle">Estás invitado a celebrar</p>
       <h1>Los 2 años de</h1>
@@ -36,11 +69,13 @@
 
     <div class="divider"></div>
 
+    <!-- DETALLES -->
     <section class="details">
       <p class="date">11 de Septiembre · 3:00 PM</p>
       <p class="place">Molino Viejo · La Granja</p>
 
-      <div class="countdown">
+      <!-- COUNTDOWN -->
+      <div class="countdown" aria-label="Cuenta regresiva">
         <div class="cdItem">
           <span id="cdDays">--</span>
           <small>días</small>
@@ -56,27 +91,56 @@
       </div>
     </section>
 
+    <!-- BOTONES -->
     <section class="actions">
-      <a href="event.ics" class="btn">Agregar al calendario</a>
-      <a href="https://www.google.com/maps/search/?api=1&query=Molino+Viejo+La+Granja" target="_blank" class="btn outline">Ver ubicación</a>
-      <a id="rsvpBtn" href="#" class="btn ghost">Confirmar por WhatsApp</a>
+
+      <a href="event.ics" class="btn" download>
+        Agregar al calendario
+      </a>
+
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=Molino+Viejo+La+Granja"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn outline"
+      >
+        Ver ubicación
+      </a>
+
+      <a
+        id="rsvpBtn"
+        href="#"
+        class="btn ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Confirmar por WhatsApp
+      </a>
+
     </section>
 
+    <!-- MENSAJE -->
     <section class="message">
       <p>
         Con mucha ilusión celebramos dos años de risas, sueños y pequeños pasos
         que llenan nuestro corazón.
-        <br>
+        <br />
         ¡Nos encantaría que nos acompañes!
       </p>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-      <p>Dress code · tonos pastel · ballet elegante</p>
+      <p class="dress">
+        Dress code · tonos pastel · ballet elegante
+      </p>
     </footer>
 
   </main>
 
+  <!-- =====================================================
+       SCRIPT
+  ====================================================== -->
   <script src="script.js"></script>
 
 </body>
