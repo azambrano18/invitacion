@@ -32,8 +32,8 @@ $("curtainContainer").onclick = () => {
   $("sparkleSound").play().catch(()=>{});
   document.querySelector(".introText")?.remove();
   $("curtainContainer").classList.add("open");
+
   setTimeout(() => {
-    $("curtainContainer").style.cssText =
-      "z-index:-1;pointer-events:none";
+    $("curtainContainer").style.display = "none";
   }, 2200);
 };
