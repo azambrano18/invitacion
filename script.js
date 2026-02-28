@@ -137,7 +137,7 @@ function buildWhatsappLink() {
   5. Inicia música.
 */
 
-curtainContainer.addEventListener("click", async () => {
+curtainContainer.addEventListener("pointerdown", async () => {
 
   if (curtainContainer.classList.contains("open")) return;
 
@@ -179,7 +179,7 @@ updateCountdown();
   30.000 ms = 30 segundos.
   Puedes cambiarlo si quieres más precisión.
 */
-setInterval(updateCountdown, 30000);
+setInterval(updateCountdown, 60000);
 
 /*
   Asignamos el link generado al botón RSVP.
