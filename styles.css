@@ -226,7 +226,7 @@ main {
 .balletWatermark {
   position: fixed;
   width: clamp(200px, 70vw, 380px);
-  opacity: 0.8;
+  opacity: 0.5;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -445,4 +445,5 @@ footer {
   height: 2px;
   background: linear-gradient(to right, transparent, var(--dorado), transparent);
   margin: 40px auto 20px auto;
+
 }
